@@ -35,6 +35,8 @@ task=object-detection</Setting>
 model_url=https://huggingface.co/facebook/detr-resnet-50-panoptic
 task=image-segmentation</Setting>
   </Item>
+  <Item Name="Python.TuningOperation" Category="" ClassName="Python.TuningOperation" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
 </Production>
 }
 

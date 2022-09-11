@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="iris-huggingface.ZPM">
+  <Document name="Contest-Sustainability.ZPM">
     <Module>
-      <Name>iris-huggingface</Name>
-      <Description>Hugging face on IRIS</Description>
+      <Name>Contest-Sustainability</Name>
+      <Description>Pre-trained models for the win</Description>
       <Version>0.0.3</Version>
       <Packaging>module</Packaging>
       <Dependencies>
