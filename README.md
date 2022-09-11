@@ -1,15 +1,17 @@
 # 1. Contest-Sustainability
-This is a template using InterSystems technologies to create an interoperable solution that answer some sustainability issues by allowing you to easily, in a few clicks, download pre-trained models from the internet ONCE, use them as much as you want for your own need, and of course, fine-tune these pre-trained models with new content available on an IRIS database and add content to the exisiting model. 
+This is an template using InterSystems technologies to create an interoperable solution that answer some sustainability issues by allowing you to easily, in a few clicks, download pre-trained models from the internet ONCE, use them as much as you want for your own need, and of course, fine-tune these pre-trained models with new content available on an IRIS database and add content to the existing model. 
 
-In this example we are taking an NLP model, trying it, then training it on data to create five new labels in the model to grade internet review. Saving in the process a lot of emmission and CO2
+In this example we are taking an NLP model, trying it, then training it on data to create five new labels in the model to grade internet review. Saving in the process a lot of resources and CO2 emission.
 
 Here are some models as example you can try :
-- https://huggingface.co/gpt2
-- https://huggingface.co/Jean-Baptiste/camembert-ner
-- https://huggingface.co/bert-base-uncased
-- https://huggingface.co/facebook/detr-resnet-50
-- https://huggingface.co/facebook/detr-resnet-50-panoptic
+  https://huggingface.co/gpt2 <br>
+  https://huggingface.co/Jean-Baptiste/camembert-ner <br>
+  https://huggingface.co/bert-base-uncased <br>
+  https://huggingface.co/facebook/detr-resnet-50 <br>
+  https://huggingface.co/facebook/detr-resnet-50-panoptic <br>
 
+
+TABLE OF CONTENT :
 - [1. Contest-Sustainability](#1-contest-sustainability)
 - [2. Installation](#2-installation)
   - [2.1. Starting the Production](#21-starting-the-production)
@@ -23,22 +25,21 @@ Here are some models as example you can try :
     - [5.2.1. Settings](#521-settings)
     - [5.2.2. Testing](#522-testing)
 - [6. Fine-tune the models](#6-fine-tune-the-models)
-  - [6.1. How it works](#61-how-it-works)
-  - [6.2. Tunning the model](#62-tunning-the-model)
-    - [6.2.1. Download the model](#621-download-the-model)
-    - [6.2.2. Settings](#622-settings)
-    - [6.2.3. Train the model](#623-train-the-model)
-    - [6.2.4. Replace the model](#624-replace-the-model)
-  - [6.3. Use the model](#63-use-the-model)
-    - [6.3.1. Settings](#631-settings)
-    - [6.3.2. Test the model](#632-test-the-model)
+  - [6.1. Tunning the model](#61-tunning-the-model)
+    - [6.1.1. Download the model](#611-download-the-model)
+    - [6.1.2. Settings](#612-settings)
+    - [6.1.3. Train the model](#613-train-the-model)
+    - [6.1.4. Replace the model](#614-replace-the-model)
+  - [6.2. Use the model](#62-use-the-model)
+    - [6.2.1. Settings](#621-settings)
+    - [6.2.2. Test the model](#622-test-the-model)
 - [7. Important note](#7-important-note)
 - [8. TroubleShooting](#8-troubleshooting)
 - [9. Conclusion](#9-conclusion)
 
 # 2. Installation
 ## 2.1. Starting the Production
-While in the iris-local-ml folder, open a terminal and enter :
+While in the contest-sustainability folder, open a terminal and enter :
 ```
 docker-compose up
 ```
@@ -61,7 +62,7 @@ Pipeline is a powerful tool by the HuggingFace team that will scan the folder in
 From here, by inputting the task, the pipeline knows what to do with the model, tokenizer or even feature-extractor in this folder, and manage your input automatically, tokenize it, process it, pass it into the model, then give back the output in a decoded form usable directly by us.
 
 # 4. HuggingFace API
-Some people or some systems can not download models or use them due to some restriction, that's why it is possible to use the HuggingFace API and call some models directly throught this service.
+Some people or some systems can not download models or use them due to some restriction, that's why it is possible to use the HuggingFace API and call some models directly throught this service. <br>
 It is made easier for you here :
 
 You must first start the demo, using the green `Start` button or `Stop` and `Start` it again to apply your config changes.
@@ -104,7 +105,7 @@ In the section we will teach you how to use almost any pre-trained model from th
 In this case, you must copy paste your model, with the config, the tokenizer.json etc inside a folder inside the model folder.<br>
 Path : `src/model/yourmodelname/` 
 
-From here you must create a new opearation, call it as you wish, go to the parameters of this operation.<br>
+From here you must create a new operation, call it as you wish, go to the parameters of this operation.<br>
 Then go to `settings` in the right tab, then in the `Python` part, then in the `%settings` part.
 Here, you can enter or modify any parameters ( don't forget to press `apply` once your are done ).<br>
 Here's the default configuration for this case :<br>
@@ -153,8 +154,8 @@ See for example :<br>
 ![ml resp](https://user-images.githubusercontent.com/77791586/182402932-4afd14fe-5f57-4b03-b0a6-1c6b74474015.png)
 
 ## 5.2. SECOND CASE : YOU WANT TO DOWNLOAD A MODEL FROM HUGGINGFACE
-In this case, you must find the URL of the model on HuggingFace.
-This is the adviced thing to do. Find a model that does what you are looking for and use it without spending resources and using the InterSystems technologies.
+In this case, you must find the URL of the model on HuggingFace.<br>
+Find a model that does what you are looking for and use it without spending resources and using the InterSystems technologies.
 
 ### 5.2.1. Settings
 From here you must go to the parameters of the `Hugging`.<br>
@@ -279,17 +280,9 @@ See as example:<br>
 # 6. Fine-tune the models
 In this part we are trying to fine-tune a model in order to repurpose an existing model and make it even better without using too much resources.
 
-## 6.1. How it works
+## 6.1. Tunning the model
 
-For now, some models may not work with this implementation since everything is automatically done, which means, no matter what model you input, we will try to make it work through transformers pipeline and trainer library.
-
-Pipeline and trainer are powerful tools by the HuggingFace team that will scan the folder in which we downloaded the model, then understand what library it should use between PyTorch, Keras, Tensorflow or JAX to then load that model using AutoModel.<br>
-From here, by inputting the task, the pipeline knows what to do with the model, tokenizer or even feature-extractor in this folder, and manage your input automatically, tokenize it, process it, pass it into the model, then give back the output in a decoded form usable directly by us.<br>
-From here, trainer will use your parameters to train the model it loaded using pipeline on the data.
-
-## 6.2. Tunning the model
-
-### 6.2.1. Download the model
+### 6.1.1. Download the model
 
 In order to use this GitHub you need to have a model from HuggingFace compatible with pipeline to use and train, and have a dataset you want to train your model on.<br>
 
@@ -301,7 +294,7 @@ To use the script, if you are inside the container, you can execute it without w
 See the output :
 ![Download OutPut](https://user-images.githubusercontent.com/77791586/185119729-defa55d2-7d11-408e-b57e-2c00eb7823d8.png)
 
-### 6.2.2. Settings
+### 6.1.2. Settings
 
 If you want to use the bert-base-cased model, and you did downloaded it using the script, nothing needs to be added to the settings and you can advance to the [train the model part](#43-train-the-model).
 
@@ -314,7 +307,7 @@ model_name=bert-base-cased
 num_labels=5
 ```
 
-### 6.2.3. Train the model
+### 6.1.3. Train the model
 
 To train the model you must go the `Production` following this link :
 ```
@@ -372,7 +365,7 @@ Now access the `Python.TuningOperation`, and select in the right tab `log` ; Her
 Once it is over, you will see a log saying that the new model was saved in a temporary folder.<br>
 Now access the `Python.TuningOperation`, and select in the right tab `message` and select the last one by clicking on it's header. Here you can see the advancement of the training and evaluations and at the end you can have access to the Metrics of the old and the new model for you to compare.
 
-### 6.2.4. Replace the model
+### 6.1.4. Replace the model
 **If you want to keep the old model**, nothing must be done, the old one will stay on the non-temporary folder and is still loaded for further training.
 
 **If you want to keep the new model**, you must click on the `Python.TuningOperation`, and select in the right tab `Actions` and test.
@@ -392,15 +385,15 @@ And for the json, empty brackets:
 Click Invoke Testing Service and see the response message. The new model was moved from the temporary folder to the non-temporary folder.
 
 
-## 6.3. Use the model
+## 6.2. Use the model
 Training a model is interesting but you can also try it out.
 
-### 6.3.1. Settings
+### 6.2.1. Settings
 If you want to use the bert-base-cased model, and you did downloaded it using the script, nothing needs to be added to the settings and you can advance to the [test the model part](#52-test-the-model).
 
 If you want to use your own model, click on the `Python.TuningOperation`, and select in the right tab `Settings`, then `Python` then in the `%settings` part, enter the parameter to add to the pipeline.
 
-### 6.3.2. Test the model
+### 6.2.2. Test the model
 To test the model you must go the `Production` following this link :
 ```
 http://localhost:52795/csp/irisapp/EnsPortal.ProductionConfig.zen?PRODUCTION=iris.Production
@@ -432,8 +425,8 @@ And for the json, you must enter every arguments needed by the model to work
 Press `Call test services` and then watch the result.
 
 # 7. Important note
-Fine-tuning models can take a LOT of time and resources, however it will always consumme less resource than training a model from scratch.<br>
-You can already see that it's taking a long time and a lot of computer power to fine-tune the model so imagine the cost if you had to train it from scratch and start over mutliple times to get the right results.
+Fine-tuning models can take a LOT of time and resources, however it will always consume less resource than training a model from scratch.<br>
+You can already see that it's taking a long time and a lot of computer power to fine-tune the model so imagine the cost if you had to train it from scratch and start over multiple times to get the right results.
 
 # 8. TroubleShooting
 
@@ -449,5 +442,9 @@ Some models may require some changes for the pipeline or the settings for exampl
 
 
 # 9. Conclusion
-From here you should be able to use any model that you need or own on IRIS.<br>
-**NOTE** that you can create a `Python.MLOperation` ( Hugging face operation ) for each of your model and have them on at the same time. 
+From here you should be able to use some models that you may need on IRIS and fine-tune them as you wish.<br>
+This template is supposed to be modified to suits your need and was created as a base for any AI and IRIS project that has sustainability and interoperability in mind.
+
+Due to the lack of time I was unable to add an API that was supposed to use a Director to directly communicate with the production and allow the users to make request to the models.<br> However, if you are still interested in an IRIS API using this Python module you can check [my GitHub](https://github.com/LucasEnard/) or you can directly go to [my example of API in Python for IRIS](https://github.com/LucasEnard/iris-python-flask-api-template).
+
+Link to my DC profile : https://community.intersystems.com/user/lucas-enard-0
